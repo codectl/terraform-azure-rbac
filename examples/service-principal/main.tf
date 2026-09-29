@@ -1,25 +1,34 @@
 module "naming" {
-  source  = "cloudnationhq/naming/azure"
+  source  = "codectl/naming/azure"
   version = "~> 0.1"
 
   suffix = ["demo", "dev"]
 }
 
+module "regions" {
+  source  = "codectl/locations/azure"
+  version = "~> 1.0"
+
+  location = {
+    primary = "westeurope"
+  }
+}
+
 module "rg" {
-  source  = "cloudnationhq/rg/azure"
-  version = "~> 3.0"
+  source  = "codectl/rg/azure"
+  version = "~> 1.0"
 
   groups = {
     main = {
       name     = module.naming.resource_group.name_unique
-      location = "westeurope"
+      location = module.regions.location.primary.name
     }
   }
 }
 
 module "kv" {
-  source  = "cloudnationhq/kv/azure"
-  version = "~> 6.0"
+  source  = "codectl/kv/azure"
+  version = "~> 1.0"
 
   vault = {
     name                = module.naming.key_vault.name_unique
@@ -29,7 +38,7 @@ module "kv" {
 }
 
 module "app" {
-  source  = "cloudnationhq/app/azuread"
+  source  = "codectl/app/azuread"
   version = "~> 1.0"
 
   registration = {
@@ -67,8 +76,8 @@ locals {
 }
 
 module "rbac" {
-  source  = "cloudnationhq/rbac/azure"
-  version = "~> 4.0"
+  source  = "codectl/rbac/azure"
+  version = "~> 1.0"
 
   role_assignments = local.role_assignments
 }

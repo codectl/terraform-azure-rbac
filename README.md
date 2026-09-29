@@ -30,7 +30,6 @@ End-to-end testing is not conducted on these modules, as they are individual com
 - data lookup of group or service-principal (app registration) based on display name in Entra ID.
 - data lookup of user based on upn in Entra ID.
 - data lookup for existing custom role definitions and assigning these.
-- does not manage PIM eligible assignments or role management policies — use [terraform-azure-pim](https://github.com/CloudNationHQ/terraform-azure-pim) for those.
 
 <!-- BEGIN_TF_DOCS -->
 ## Requirements
@@ -162,24 +161,15 @@ To lookup these values in Entra ID, specific API permissions are needed for the 
 
 If these API permissions cannot be granted for whatever reason, alternatively the object_id can be directly used instead.
 
-## Authors
-
-Module is maintained by [these awesome contributors](https://github.com/cloudnationhq/terraform-azure-rbac/graphs/contributors).
-
 ## Contributors
 
 We welcome contributions from the community! Whether it's reporting a bug, suggesting a new feature, or submitting a pull request, your input is highly valued.
 
-For more information, please see our contribution [guidelines](./CONTRIBUTING.md). <br><br>
+For more information, please see our contribution [guidelines](./CONTRIBUTING.md).
 
-<a href="https://github.com/cloudnationhq/terraform-azure-rbac/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=cloudnationhq/terraform-azure-rbac" />
-</a>
-
-MIT Licensed. See [LICENSE](./LICENSE) for full details.
+MIT Licensed. See [LICENSE](https://github.com/codectl/terraform-azure-rbac/blob/main/LICENSE) for full details.
 
 ## References
 
 - [Documentation](https://learn.microsoft.com/en-us/azure/role-based-access-control/)
 - [Rest Api](https://learn.microsoft.com/en-us/azure/role-based-access-control/role-assignments-rest)
-- [Rest Api Specs](https://github.com/MicrosoftDocs/azure-docs/blob/main/articles/role-based-access-control/role-assignments-list-rest.md)
